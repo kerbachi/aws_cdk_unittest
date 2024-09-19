@@ -36,7 +36,7 @@ python -m pip init
 
 3. *Install AWS CDK for Python* as a development dependency:
 ```
-python -m pip install -r requirements.txt aws-cdk
+python -m pip install -r requirements.txt
 ```
 
 4. Create a new construct class in a file named __init__.py (or construct.py if you prefer). This class should extend aws_cdk.core.Construct. For example:
