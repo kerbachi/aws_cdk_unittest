@@ -1,9 +1,10 @@
 from aws_cdk import (
-    # Duration,
+    Duration,
     Stack,
-    # aws_sqs as sqs,
+    aws_sqs as sqs
 )
 from constructs import Construct
+from cdk_nag import NagSuppressions
 
 class AwsCdkHelloworldStack(Stack):
 
@@ -13,7 +14,24 @@ class AwsCdkHelloworldStack(Stack):
         # The code that defines your stack goes here
 
         # example resource
-        # queue = sqs.Queue(
-        #     self, "AwsCdkHelloworldQueue",
-        #     visibility_timeout=Duration.seconds(300),
-        # )
+        queue = sqs.Queue(
+            self, "AwsCdkHelloworldQueue",
+            visibility_timeout=Duration.seconds(300),
+        )
+
+        # Supressions
+
+        NagSuppressions.add_resource_suppressions(queue, 
+                                                  [
+                                                      { 
+                                                          "id": "AwsSolutions-SQS3", 
+                                                          "reason": "AwsSolutions-SQS3 est null" 
+                                                       },
+                                                      { 
+                                                          "id": "AwsSolutions-SQS4", 
+                                                          "reason": "AwsSolutions-SQS4 est null" 
+                                                       }
+                                                  ]
+                                                  )
+
+
