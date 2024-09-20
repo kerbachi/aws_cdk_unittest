@@ -1,15 +1,14 @@
-import aws_cdk as core
+import aws_cdk as cdk
 import aws_cdk.assertions as assertions
 
 from aws_cdk_helloworld.aws_cdk_helloworld_stack import AwsCdkHelloworldStack
 
-# example tests. To run these tests, uncomment this file along with the example
-# resource in aws_cdk_helloworld/aws_cdk_helloworld_stack.py
+# example tests.
 def test_sqs_queue_created():
-    app = core.App()
+    app = cdk.App()
     stack = AwsCdkHelloworldStack(app, "aws-cdk-helloworld")
     template = assertions.Template.from_stack(stack)
 
-#     template.has_resource_properties("AWS::SQS::Queue", {
-#         "VisibilityTimeout": 300
-#     })
+    template.has_resource_properties("AWS::SQS::Queue", {
+        "VisibilityTimeout": 300
+    })
